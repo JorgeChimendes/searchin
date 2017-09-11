@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="common/js/mld/material.min.js"></script>
+    <script src="common/js/main.js"></script>
+    <script src="common/js/jquery.js"></script>
+    <link rel="stylesheet" href="common/js/mld/material.min.css">
+    <!--<link rel="stylesheet" href="common/js/mld/material.css">-->
+
+
+</head>
+
+<body>
+
+    <dialog id="searchScreen" class="mdl-dialog" style="
+    position: absolute;
+    width: 795.6px; 
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.12), -1px 3px 10px rgba(0,0,0,0.24);
+    ">
+        <!-- input that will be searched just in time -->
+        <input type="text" id="expression" style="
+        width: 782px;   
+        height: 40px;
+        border-color: transparent;
+        font-size: 24px;
+        padding-left: 5px;
+        color: darkgray;
+        " placeholder="Search">
+    </dialog>
+    <dialog class="mdl-dialog" style="
+    position: absolute;
+    width: 795.6px;
+    height: 550px;
+    margin-left: 10px;
+    margin-top: 80px; 
+    border-radius: 3px;  
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.12), -1px 7px 10px rgba(0,0,0,0.24);
+    ">
+        <!--div that will display all the lines coming from the input -->
+        <div id="result" style="width: 795.6px; height: 550px; overflow: auto">
+            <ul id="resultList" class="mdl-list"></ul>
+        </div>
+    </dialog>
+    <dialog class="mdl-dialog" style="
+    position: absolute;
+    width: 530.4px;
+    height: 610px;
+    margin-left: 815.6px;
+    margin-top: 20px;
+    border-radius: 3px;
+    box-shadow: 15px 15px 5px rgba(0,0,0,0.12), -1px 7px 10px rgba(0,0,0,0.24);
+    
+    ">
+        <!--div that will display the entire file on right side of the screen -->
+        <div id="showEntireFile" style=" width: 528.4px;
+    height: 610px;overflow: auto;padding-left: 2px"></div>
+
+    </dialog>
+
+
+    <!-- screen that wil receive the file -->
+    <dialog id="dragFile" class="mdl-dialog" style="
+    position: absolute;
+    background-color: rgba(255,255,255,1);
+    width: 700px;
+    height: 500px;
+    border-radius: 3px;
+    margin-left: 333px;
+    margin-top: 80px;  
+    box-shadow: 15px 15px 5px rgba(0,0,0,0.12), -1px 7px 10px rgba(0,0,0,0.24);
+    ">
+        <div class="mdl-dialog__content" style="width: 400px;
+    height: 262px;
+    font-size: 24px;
+    padding-top: 238px;
+    padding-left: 40px;">
+            Drag your file here
+        </div>
+    </dialog>
+    <!-- Raised button with ripple -->
+    <button id="voltar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="
+    position: absolute;
+    right: 50px;
+    bottom: 45px;
+    border-radius: 3px;
+    box-shadow: 15px 15px 5px rgba(0,0,0,0.12), -1px 7px 10px rgba(0,0,0,0.24);
+    ">
+  Voltar
+</button>
+</body>
+
+</html>
