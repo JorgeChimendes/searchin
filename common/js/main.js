@@ -11,14 +11,16 @@ window.onload = function() {
         $('#voltar').fadeOut();
         $('#voltar').click(function() {
             $('#dragFile').fadeIn("fast");
-            $('#dragFile').animate({ 'margin-top': '-=2000' }, 500, function() {});
+            $('#dragFile').animate({ 'margin-top': '-=2000' }, 800, function() {});
             var myNode = document.getElementById("resultList");
             while (myNode.firstChild) {
                 myNode.removeChild(myNode.firstChild);
             }
             $('#showEntireFile').text('');
+          $(this).fadeOut();
         });
-        $('#voltar').click(function() {
+
+      $('#voltar').click(function() {
             file = len = null;
             for (var i = 1; i < search.length; i++) {
                 document.getElementById("line" + i).remove();
@@ -65,8 +67,6 @@ window.onload = function() {
                 };
                 reader.readAsText(file);
             }, false);
-
-
         }
 
         var timeoutID = null;
@@ -80,22 +80,17 @@ window.onload = function() {
 
 };
 
-
-
-
 function writeFile() {
     try {
         var entire = document.getElementById('showEntireFile');
 
-
         for (var i = 0; i < lines.length; i++) {
             var p = document.createElement('p');
             p.setAttribute('id', 'entire' + (i + 1));
-            p.setAttribute('style', 'margin-top: -18px;');
+            
             $(p).text(i + 1 + ': ' + lines[i]);
             entire.appendChild(p);
         }
-
         $('#voltar').fadeIn();
     } catch (ex) {
         alert(ex.message);
@@ -136,7 +131,7 @@ function showOntheScreen() {
         if (search.length < 1) {
             var li = document.createElement('li');
             li.setAttribute('id', 'void');
-            li.setAttribute('class', 'mdl-list__item');
+            li.setAttribute('class', 'mdl-list__item ');
             var span = document.createElement('span');
             span.setAttribute('class', 'mdl-list__item-primary-content');
             ul.appendChild(li);
@@ -144,25 +139,28 @@ function showOntheScreen() {
             $('#void').text("Not found");
         }
         for (var i = 0; i < search.length; i++) {
-            document.getElementById('entire' + search[i].line).setAttribute('style', 'background-color: #f8ecc7;');
+            document.getElementById('entire' + search[i].line).setAttribute('style', 'background-color: #ffdd32;');
             var li = document.createElement('li');
-            li.setAttribute('id', 'f' + i);
-            li.setAttribute('class', 'mdl-list__item');
-            li.setAttribute("style", "box-shadow: 1px 1px 2px; width: 765px; height: 48px; margin-left: 10px; margin-top: 5px;");
-
+            li.setAttribute('id', 'f' + search[i].line);
+            li.setAttribute('class', 'mdl-list__item addEventListener ');
+            li.setAttribute('style', 'margin-bottom: -20px;');
+            li.setAttribute('onclick', 'scrollerTo(this.id)');
+     
             var span = document.createElement('span');
-            span.setAttribute('class', 'mdl-list__item-primary-content');
+            span.setAttribute('class', 'mdl-list__item-primary-content mdl-button--colored');
+            span.setAttribute('style', 'box-shadow: 2px 2px 3px;');
             ul.appendChild(li);
             li.appendChild(span);
-
+            
             var div1 = document.createElement('div');
-            div1.setAttribute('style', 'width: 40px; height: 33px; left: 0; box-shadow: 1px 1px 1px; padding-top: 15px; text-align: center;');
+            div1.setAttribute('style', 'width: 40px; height: 28px; left: 0; box-shadow: 1px 1px 1px; padding-top: 15px; text-align: center;');
             div1.setAttribute('id', 'line' + i);
             $(div1).text(search[i].line);
             span.appendChild(div1);
+            
 
             var div2 = document.createElement('div');
-            div2.setAttribute('style', 'margin-left: 5px;');
+            div2.setAttribute('style', 'width: 700px; margin-left: 5px;');
             div2.setAttribute('id', 'attribute' + i);
             $(div2).text(search[i].result);
             span.appendChild(div2);
@@ -171,4 +169,11 @@ function showOntheScreen() {
     } catch (ex) {
         alert(ex.message);
     }
+}
+
+//function that scrool to the line clicked on the result page
+function scrollerTo(e){
+  var id = e.replace('f', '');
+  $('#showEntireFile').scrollTop(0);
+  $('#showEntireFile').animate({scrollTop: $('#entire'+ id).position().top - 25}, 100);
 }
